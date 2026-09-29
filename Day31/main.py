@@ -10,9 +10,9 @@ to_learn = {}
 
 # Carga de datos con fallback
 try:
-    data = pandas.read_csv("data/words_to_learn.csv")
+    data = pandas.read_csv("Day31/data/words_to_learn.csv")
 except (FileNotFoundError, pandas.errors.EmptyDataError):
-    original_data = pandas.read_csv("data/french_words.csv")
+    original_data = pandas.read_csv("Day31/data/french_words.csv")
     to_learn = original_data.to_dict(orient="records")
 else:
     to_learn = data.to_dict(orient="records")
@@ -45,7 +45,7 @@ def is_known():
     if current_card in to_learn:
         to_learn.remove(current_card)
         df_to_save = pandas.DataFrame(to_learn)
-        df_to_save.to_csv("data/words_to_learn.csv", index=False)
+        df_to_save.to_csv("Day31/data/words_to_learn.csv", index=False)
     next_card()
 
 
@@ -58,8 +58,8 @@ flip_timer = window.after(3000, func=flip_card)
 
 # Configuración del Canvas
 canvas = tk.Canvas(width=800, height=526, bg=BACKGROUND_COLOR, highlightthickness=0)
-card_front_img = tk.PhotoImage(file="images/card_front.png")
-card_back_img = tk.PhotoImage(file="images/card_back.png")
+card_front_img = tk.PhotoImage(file="Day31/images/card_front.png")
+card_back_img = tk.PhotoImage(file="Day31/images/card_back.png")
 
 card_background = canvas.create_image(400, 263, image=card_front_img)
 card_title = canvas.create_text(400, 150, text="", font=(FONT_NAME, 40, "italic"))
@@ -67,11 +67,11 @@ card_word = canvas.create_text(400, 263, text="", font=(FONT_NAME, 60, "bold"))
 canvas.grid(row=0, column=0, columnspan=2)
 
 # Botones
-cross_image = tk.PhotoImage(file="images/wrong.png")
+cross_image = tk.PhotoImage(file="Day31/images/wrong.png")
 unknown_button = tk.Button(image=cross_image, highlightthickness=0, command=next_card)
 unknown_button.grid(row=1, column=0)
 
-check_image = tk.PhotoImage(file="images/right.png")
+check_image = tk.PhotoImage(file="Day31/images/right.png")
 known_button = tk.Button(image=check_image, highlightthickness=0, command=is_known)
 known_button.grid(row=1, column=1)
 
