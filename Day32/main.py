@@ -2,9 +2,14 @@
 import smtplib
 import datetime as dt
 import random
+import os
+from dotenv import load_dotenv
 
-MY_EMAIL = "joserbd512@gmail.com"
-MY_PASSWORD = "xjqzvdgbhezrvfra"
+load_dotenv()
+
+# O usas la librería python-dotenv
+MY_EMAIL = os.environ.get("MY_EMAIL")
+MY_PASSWORD = os.environ.get("MY_PASSWORD")
 
 now = dt.datetime.now()
 weekday = now.weekday()
